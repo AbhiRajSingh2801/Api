@@ -1,0 +1,16 @@
+
+{
+  "name":"",
+  "creationTime":"",
+  "namespace":"",
+  "repoUrl":"",
+  "path":"",
+  "branch":"",
+  "helm": {
+   "valueFiles": [
+   "values.yaml"
+   ],
+   "values": ""
+ },
+ "services":[]
+}

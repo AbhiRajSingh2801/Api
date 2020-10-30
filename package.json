@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "K8s dispose environment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Ayush Dixit <AD00487336@techmahindra.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "bitbucket": "^2.4.1",
+    "bitbucket-auth": "^0.5.4",
+    "circular-json": "^0.5.9",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "js-yaml": "^3.14.0",
+    "json-circular-stringify": "^1.0.1",
+    "nodemon": "^2.0.4",
+    "swagger-jsdoc": "^4.2.0",
+    "swagger-ui-express": "^4.1.4"
+  }
+}

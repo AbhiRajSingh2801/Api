@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: DEV-QA-1
+spec:
+  destination:
+    name: ''
+    namespace: DEV-QA-1
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: dev/chart
+    repoURL: 'https://github.com/argoproj/argocd-example-appg.git'
+    targetRevision: HEAD
+    directory:
+      jsonnet:
+        extVars:
+          - name: name
+            value: QA
+            code: false
+          - name: range
+            value: '22'
+            code: false
+        tlas:
+          - {}
+      recurse: false
+  project: default
+  syncPolicy:
+    syncOptions: []
+    automated:
+      prune: true
+      selfHeal: true

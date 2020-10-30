@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "k8s disposible enviroment application API",
+        "description": "List of API for the operations",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "basePath": "/",
+    "tags": [{
+        "name": "Services",
+        "description": "API to ket kubernetes resources"
+    }, {
+        "name": "Resource",
+        "description": "API for the K8s resources"
+    }],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/namespaces/{env}": {
+            "parameters": [
+                {
+                "name": "env",
+                "in": "path",
+                "required": true,
+                "description": "env name for the namespaces",
+                "type": "string"
+                }
+                ],
+            "get": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "Get namespaces in current environment",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/namespaces"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/404Notfound"
+                        }
+                    }
+                }
+            }
+        },
+        "/namespaces/{env}/{hash}/services":{
+            "parameters": [
+                {
+                "name": "env",
+                "in": "path",
+                "required": true,
+                "description": "env name for the namespaces",
+                "type": "string"
+                },
+                {
+                    "name": "hash",
+                    "in": "path",
+                    "required": true,
+                    "description": "hash code for the branch",
+                    "type": "string"
+                }
+                ],
+                "get": {
+                    "tags": [
+                        "Resource"
+                    ],
+                    "summary": "Get services in current environment",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/services"
+                            }
+                        },
+                        "404": {
+                            "description": "Not Found",
+                            "schema": {
+                                "$ref": "#/definitions/404Notfound"
+                            }
+                        }
+                    }
+                } 
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "name",
+                "_id",
+                "companies"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "books": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "companies": {
+                }
+            }
+        },
+        "404Notfound": {
+            "properties":{
+                "status_code":{
+                    "type": "integer"
+                },
+                "description":{
+                    "type": "string"
+                }
+            }
+        },
+        "namespaces": {
+          "properties": {
+            "namespaces":{
+              "type": "array",
+              "items": {
+                  "type": "object",
+                    "properties":{
+                      "name":{
+                        "type": "string"
+                      },
+                      "hash":{
+                        "type":"string"
+                      }
+                    }
+                  }
+              }
+          }
+        },
+        "services":{
+            "properties": {
+                "namespaces":{
+                    "type":"string"
+                },
+                "services":{
+                    "type":"array",
+                    "items":{
+                        "type":"string"
+                    }
+                },
+                "values":{
+                    "type":"object"
+                }
+            }
+        }
+  }
+}
